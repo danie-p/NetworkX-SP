@@ -1,9 +1,9 @@
 # Semestrálna práca - NetworkX
 V mojej semestrálnej práci som sa zamerala na využitie modulu NetworkX určeného na prácu s grafmi.
-Práca obsahuje ako teoretickú časť s názornými príkladmi obsiahnutú v Jupyter Notebooku, tak aj praktickú časť, kde som poznatky nadobudnuté učením sa o module NetworkX využila na implementáciu vlastných algoritmov.
+Práca obsahuje ako teoretickú časť s názornými príkladmi obsiahnutú v Jupyter Notebooku, tak aj praktickú časť, kde som nadobudnuté poznatky o module NetworkX využila na implementáciu algoritmov Label Set (na hľadanie najkratšej cesty medzi dvomi vrcholmi grafu) a dvoch verzií Kruskalovho algoritmu (na hľadanie najlacnejšej / najdrahšej kostry grafu).
 
 ## Inštalácia
-    pip install pyqt5
-    pip install pyqt5-tools
-    pip install scipy
-    pip install networkx
+    pip install -r requirements.txt
+
+## Spustenie
+Program je možné spustiť zadaním príkazu `python gui.py` alebo `python3 gui.py` z terminálu.
