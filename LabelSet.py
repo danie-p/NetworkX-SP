@@ -44,6 +44,8 @@ def NajdiCestu(zVrchola, doVrchola, dataset):
     return graf
 
 def Vypis(doVrchola, graf):
+    if graf.nodes[doVrchola]['t'] == 100200:
+        return "- (cesta neexistuje)"
     return str(graf.nodes[doVrchola]['t'])
 
 def Vypis2(doVrchola, graf):
