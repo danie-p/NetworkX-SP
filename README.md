@@ -6,4 +6,4 @@ Práca obsahuje ako teoretickú časť s názornými príkladmi obsiahnutú v Ju
     pip install -r requirements.txt
 
 ## Spustenie
-Program je možné spustiť zadaním príkazu `python gui.py` alebo `python3 gui.py` z terminálu.
+Program je možné spustiť zadaním príkazu `python gui.py` alebo `python3 gui.py` do terminálu.
