@@ -1,12 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QSlider
-import networkx as nx
-import matplotlib.pyplot as plt
+import Kruskal
+import LabelSet
 
 class Ui_NetworkX(object):
     def setupUi(self, NetworkX):
         NetworkX.setObjectName("NetworkX")
-        NetworkX.resize(1311, 796)
+        NetworkX.resize(1311, 810)
+        NetworkX.setStyleSheet("QMainWindow {background: '#a7e8d1';}")
 
         self.centralwidget = QtWidgets.QWidget(NetworkX)
         self.centralwidget.setObjectName("centralwidget")
@@ -104,6 +105,16 @@ class Ui_NetworkX(object):
         self.button_najkratsia_cesta.setAutoFillBackground(False)
         self.button_najkratsia_cesta.setObjectName("button_najkratsia_cesta")
         self.horizontalLayout_3.addWidget(self.button_najkratsia_cesta)
+        self.button_najkratsia_cesta.setStyleSheet("""
+                            QPushButton {
+                                background-color:#5ddeb0;
+                                border-style:outset;
+                                border-radius:10px
+                            }
+                            QPushButton:hover {
+                                background-color:#48cf9f
+                            }
+                            """)
 
     # LABEL CESTA
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
@@ -113,6 +124,7 @@ class Ui_NetworkX(object):
         self.label_cesta.setGeometry(QtCore.QRect(10, 300, 641, 71))
         self.label_cesta.setAlignment(QtCore.Qt.AlignCenter)
         self.label_cesta.setObjectName("label_cesta")
+        self.label_cesta.setWordWrap(True)
 
     # LABEL DLZKA CESTY
         self.label_dlzka_cesty = QtWidgets.QLabel(self.centralwidget)
@@ -148,6 +160,16 @@ class Ui_NetworkX(object):
         self.button_kruskal1.setAutoFillBackground(False)
         self.button_kruskal1.setObjectName("button_kruskal1")
         self.horizontalLayout_4.addWidget(self.button_kruskal1)
+        self.button_kruskal1.setStyleSheet("""
+                            QPushButton {
+                                background-color:#5ddeb0;
+                                border-style:outset;
+                                border-radius:10px
+                            }
+                            QPushButton:hover {
+                                background-color:#48cf9f
+                            }
+                            """)
 
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem5)
@@ -177,6 +199,16 @@ class Ui_NetworkX(object):
         self.button_kruskal2.setAutoFillBackground(False)
         self.button_kruskal2.setObjectName("button_kruskal2")
         self.horizontalLayout_5.addWidget(self.button_kruskal2)
+        self.button_kruskal2.setStyleSheet("""
+                            QPushButton {
+                                background-color:#5ddeb0;
+                                border-style:outset;
+                                border-radius:10px
+                            }
+                            QPushButton:hover {
+                                background-color:#48cf9f
+                            }
+                            """)
 
         spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_5.addItem(spacerItem7)
@@ -217,39 +249,41 @@ class Ui_NetworkX(object):
     # LABEL CENA KOSTRY 2
         self.label_cenakostry2 = QtWidgets.QLabel(self.centralwidget)
         self.label_cenakostry2.setEnabled(False)
-        self.label_cenakostry2.setGeometry(QtCore.QRect(660, 670, 641, 31))
+        self.label_cenakostry2.setGeometry(QtCore.QRect(660, 661, 641, 31))
         self.label_cenakostry2.setAutoFillBackground(False)
         self.label_cenakostry2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_cenakostry2.setObjectName("label_cenakostry2")
 
     # OBRAZOK KRUSKAL 2
         self.obrazok_kruskal2 = QtWidgets.QLabel(self.centralwidget)
-        self.obrazok_kruskal2.setGeometry(QtCore.QRect(10, 370, 641, 381))
+        self.obrazok_kruskal2.setGeometry(QtCore.QRect(10, 370, 641, 440))
         self.obrazok_kruskal2.setText("")
-        self.obrazok_kruskal2.setPixmap(QtGui.QPixmap("gui/gui/.vs/gui/kruskal1.png"))
+        self.obrazok_kruskal2.setPixmap(QtGui.QPixmap("kruskal1.png"))
         self.obrazok_kruskal2.setScaledContents(True)
         self.obrazok_kruskal2.setObjectName("obrazok_kruskal2")
 
     # OBRAZOK KRUSKAL 1
         self.obrazok_kruskal1 = QtWidgets.QLabel(self.centralwidget)
-        self.obrazok_kruskal1.setGeometry(QtCore.QRect(660, 220, 641, 381))
+        self.obrazok_kruskal1.setGeometry(QtCore.QRect(660, 161, 641, 440))
         self.obrazok_kruskal1.setText("")
-        self.obrazok_kruskal1.setPixmap(QtGui.QPixmap("gui/gui/.vs/gui/kruskal1.png"))
+        self.obrazok_kruskal1.setPixmap(QtGui.QPixmap("kruskal1.png"))
         self.obrazok_kruskal1.setScaledContents(True)
         self.obrazok_kruskal1.setObjectName("obrazok_kruskal1")
 
     # LABEL CISELNIKY
         self.label_ciselnik1 = QtWidgets.QLabel(self.centralwidget)
-        self.label_ciselnik1.setGeometry(QtCore.QRect(260, 150, 41, 41))
+        self.label_ciselnik1.setGeometry(QtCore.QRect(250, 150, 51, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
+        font.setFamily("Bahnschrift Light")
         self.label_ciselnik1.setFont(font)
         self.label_ciselnik1.setAlignment(QtCore.Qt.AlignCenter)
         self.label_ciselnik1.setObjectName("label_ciselnik1")
         self.label_ciselnik2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_ciselnik2.setGeometry(QtCore.QRect(510, 150, 41, 41))
+        self.label_ciselnik2.setGeometry(QtCore.QRect(510, 150, 51, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
+        font.setFamily("Bahnschrift Light")
         self.label_ciselnik2.setFont(font)
         self.label_ciselnik2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_ciselnik2.setObjectName("label_ciselnik2")
@@ -258,6 +292,16 @@ class Ui_NetworkX(object):
         self.button_potvrd = QtWidgets.QPushButton(self.centralwidget)
         self.button_potvrd.setGeometry(QtCore.QRect(350, 10, 91, 41))
         self.button_potvrd.setObjectName("button_potvrd")
+        self.button_potvrd.setStyleSheet("""
+                            QPushButton {
+                                background-color:#5ddeb0;
+                                border-style:outset;
+                                border-radius:10px
+                            }
+                            QPushButton:hover {
+                                background-color:#48cf9f
+                            }
+                            """)
 
         NetworkX.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(NetworkX)
@@ -282,7 +326,7 @@ class Ui_NetworkX(object):
 
     def retranslateUi(self, NetworkX):
         _translate = QtCore.QCoreApplication.translate
-        NetworkX.setWindowTitle(_translate("NetworkX", "MainWindow"))
+        NetworkX.setWindowTitle(_translate("NetworkX", "NetworkX"))
         self.comboBox_dataset.setItemText(0, _translate("NetworkX", "TEST_mini.hrn"))
         self.comboBox_dataset.setItemText(1, _translate("NetworkX", "Strakonice.hrn"))
         self.comboBox_typkostry.setItemText(0, _translate("NetworkX", "Najlacnejsia"))
@@ -290,16 +334,18 @@ class Ui_NetworkX(object):
         self.label_dataset.setText(_translate("NetworkX", "Vyberte dataset"))
         self.label_rozmedzie.setText(_translate("NetworkX", "Vyberte 2 vrcholy"))
         self.button_najkratsia_cesta.setText(_translate("NetworkX", "Najkratsia cesta medzi zvolenymi vrcholmi"))
-        self.label_cesta.setText(_translate("NetworkX", "cesta"))
-        self.label_dlzka_cesty.setText(_translate("NetworkX", "dlzka"))
+        self.label_cesta.setText(_translate("NetworkX", ""))
+        self.label_dlzka_cesty.setText(_translate("NetworkX", ""))
         self.button_kruskal1.setText(_translate("NetworkX", "Kruskal I"))
         self.button_kruskal2.setText(_translate("NetworkX", "Kruskal II"))
         self.label_typkostry.setText(_translate("NetworkX", "Vyberte typ hladanej kostry"))
-        self.label_cenakostry1.setText(_translate("NetworkX", "cena"))
-        self.label_cenakostry2.setText(_translate("NetworkX", "cena"))
+        self.label_cenakostry1.setText(_translate("NetworkX", ""))
+        self.label_cenakostry2.setText(_translate("NetworkX", ""))
         self.label_ciselnik1.setText(_translate("NetworkX", "1"))
         self.label_ciselnik2.setText(_translate("NetworkX", "1"))
         self.button_potvrd.setText(_translate("NetworkX", "Potvrdte"))
+
+    # AKCIE
 
     def clicked_potvrd(self):
         if self.comboBox_dataset.currentText() == "TEST_mini.hrn":
@@ -307,7 +353,9 @@ class Ui_NetworkX(object):
             self.slider2.setMaximum(13)
         else:
             self.slider1.setMaximum(627)
+            self.slider1.setTickInterval(50)
             self.slider2.setMaximum(627)
+            self.slider2.setTickInterval(50)
 
     def slide_slider1(self, value):
         self.label_ciselnik1.setText(str(value))
@@ -316,160 +364,27 @@ class Ui_NetworkX(object):
         self.label_ciselnik2.setText(str(value))
 
     def clicked_najkratsia_cesta(self):
-        self.Vypis2(self.slider1.value(), self.slider2.value(), self.NajdiCestu(self.slider1.value(), self.slider2.value(), self.comboBox_dataset.currentText()))
+        graf = LabelSet.NajdiCestu(self.slider1.value(), self.slider2.value(), self.comboBox_dataset.currentText())
+        self.label_dlzka_cesty.setText('Dlzka cesty z vrchola ' + str(self.slider1.value()) + ' do vrchola ' + str(self.slider2.value()) + ' je ' + LabelSet.Vypis(self.slider2.value(), graf))
+        self.label_cesta.setText('Cesta vedie cez vrcholy ' + LabelSet.Vypis2(self.slider2.value(), graf))
 
     def clicked_kruskal1(self):
         if self.comboBox_typkostry.currentText() == "Najlacnejsia":
-            self.Vypis(self.KruskalI(False, self.comboBox_dataset.currentText()), 1)
+            kostra = Kruskal.KruskalI(False, self.comboBox_dataset.currentText())
+            self.label_cenakostry1.setText('Cena kostry je ' + Kruskal.Vypis(kostra))
         else:
-            self.Vypis(self.KruskalI(True, self.comboBox_dataset.currentText()), 1)
+            kostra = Kruskal.KruskalI(True, self.comboBox_dataset.currentText())
+            self.label_cenakostry1.setText('Cena kostry je ' + Kruskal.Vypis(kostra))
+        self.obrazok_kruskal1.setPixmap(QtGui.QPixmap("obrazok.png"))
 
     def clicked_kruskal2(self):
         if self.comboBox_typkostry.currentText() == "Najlacnejsia":
-            self.Vypis(self.KruskalII(False, self.comboBox_dataset.currentText()), 2)
+            kostra = Kruskal.KruskalII(False, self.comboBox_dataset.currentText())
+            self.label_cenakostry2.setText('Cena kostry je ' + Kruskal.Vypis(kostra))
         else:
-            self.Vypis(self.KruskalII(True, self.comboBox_dataset.currentText()), 2)
-
-
-    # KRUSKAL
-
-    # ako parameter oèakáva hodnotu True (najdrahšie kostra) alebo False (najlacnejšia kostra)
-    def KruskalI(self, param, dataset):
-        data = []
-        for riadok in open(dataset):
-            data.append(riadok.split())
-
-        graf = nx.Graph()
-        for riadok in data:
-            graf.add_edge(eval(riadok[0]), eval(riadok[1]), weight=eval(riadok[2]))
-        kostra = nx.Graph()
-
-        # Krok 1: Zoradenie hrán pod¾a ohodnotenia do postupnosti P
-        P = sorted(graf.edges(data=True), key=lambda x: x[2].get('weight', 1), reverse=param)
-        
-        while((kostra.number_of_edges() != graf.number_of_nodes() - 1) and (P)):
-            # Krok 2: Ak hrana vybraná z postupnosti P nevytvára s ostatnými hranami kostry cyklus, zaradíme ju do kostry
-            kostra.add_edge(P[0][0], P[0][1], weight=graf.get_edge_data(P[0][0], P[0][1])['weight'])
-        
-            try:
-                nx.find_cycle(kostra)
-            except nx.exception.NetworkXNoCycle:
-                pass
-            else:
-                kostra.remove_edge(P[0][0], P[0][1])
-
-            P.remove(P[0])
-        
-            #Krok 3: Opakovanie, pokia¾ nie je poèet hrán kostry rovný poètu vrcholov digrafu - 1 alebo pokia¾ nie je postupnos P prázdna
-    
-        return kostra
-    
-    def KruskalII(self, param, dataset):
-        data = []
-        for riadok in open(dataset):
-            data.append(riadok.split())
-
-        graf = nx.Graph()
-        for riadok in data:
-            graf.add_edge(eval(riadok[0]), eval(riadok[1]), weight=eval(riadok[2]))
-
-        kostra = nx.Graph()
-    
-        # Krok 1: Zoradenie hrán pod¾a ohodnotenia do postupnosti P
-        P = sorted(graf.edges(data=True), key=lambda x: x[2].get('weight', 1), reverse=param)
-
-        # Krok 2: Oznaèenie vrcholov
-        for i in range (1, len(graf.nodes()) + 1):
-            graf.nodes[i]['k'] = i
-
-        while((kostra.number_of_edges() != graf.number_of_nodes() - 1) and (P)):
-            # Krok 3: Zaradenie vyhovujúcej hrany do kostry
-            k0 = graf.nodes[P[0][0]]['k']
-            k1 = graf.nodes[P[0][1]]['k']
-            if k0 != k1:
-                kostra.add_edge(P[0][0], P[0][1], weight=graf.get_edge_data(P[0][0], P[0][1])['weight'])
-                kmin = min(k0, k1)
-                kmax = max(k0, k1)
-                for i in range (1, len(graf.nodes()) + 1):
-                    if graf.nodes[i]['k'] == kmax:
-                            graf.nodes[i]['k'] = kmin
-            P.remove(P[0])
-
-            # Krok 3: Opakovanie
-    
-        return kostra
-
-    def Vypis(self, kostra, cislo):
-        if cislo == 1:
-            self.label_cenakostry1.setText('Cena kostry je ' + str(sum(kostra.get_edge_data(hrana[0], hrana[1])['weight'] for hrana in kostra.edges())))
-        else:
-            self.label_cenakostry2.setText('Cena kostry je ' + str(sum(kostra.get_edge_data(hrana[0], hrana[1])['weight'] for hrana in kostra.edges())))
-        nx.draw(kostra, node_size=20)
-        plt.savefig("obrazok.png")
-        kostra.clear()
-        plt.clf()
-        if cislo == 1:
-            self.obrazok_kruskal1.setPixmap(QtGui.QPixmap("obrazok.png"))
-        else:
-            self.obrazok_kruskal2.setPixmap(QtGui.QPixmap("obrazok.png"))
-
-    # NAJKRATSIA CESTA
-
-    def NajdiCestu(self, zVrchola, doVrchola, dataset):
-        data = []
-        for riadok in open(dataset):
-            data.append(riadok.split())
-
-        graf = nx.DiGraph()
-        for riadok in data:
-            graf.add_edge(eval(riadok[0]), eval(riadok[1]), weight=eval(riadok[2]))
-    
-        infinity = 100200
-        # Krok 1: Inicializácia
-        epsilon = [zVrchola]
-    
-        for i in range (1, len(graf.nodes()) + 1):
-            if graf.nodes[i] == graf.nodes[zVrchola]:
-                graf.nodes[i]['t'] = 0
-                graf.nodes[i]['pouzity'] = True
-            else:
-                graf.nodes[i]['t'] = infinity
-                graf.nodes[i]['pouzity'] = False
-            graf.nodes[i]['x'] = 0
-    
-        # Krok 2: Porovnanie
-        while(epsilon):
-            # Ako prvok r z množiny epsilon vyberáme prvok s najmenšou znaèkou t
-            min_t_epsilon = min(graf.nodes[i]['t'] for i in epsilon)
-            min_vrchol = [i for i in epsilon if graf.nodes[i]['t'] == min_t_epsilon]
-            r = epsilon[epsilon.index(min_vrchol[0])]
-            epsilon.remove(r)
-            if r == doVrchola:
-                break
-
-            for vystupnaHrana in graf.out_edges(r):
-                # vystupnaHrana[1] = koncovy vrchol hrany
-                if graf.nodes[vystupnaHrana[1]]['t'] > graf.nodes[r]['t'] + graf.get_edge_data(vystupnaHrana[0], vystupnaHrana[1])['weight']:
-                    graf.nodes[vystupnaHrana[1]]['t'] = graf.nodes[r]['t'] + graf.get_edge_data(vystupnaHrana[0], vystupnaHrana[1])['weight']
-                    graf.nodes[vystupnaHrana[1]]['x'] = r
-                    if not graf.nodes[vystupnaHrana[1]]['pouzity']:
-                        epsilon.append(vystupnaHrana[1])
-                        graf.nodes[vystupnaHrana[1]]['pouzity'] = True
-            # Krok 3: Opakovanie, pokia¾ nie je epsilon prázdny
-        return graf
-
-    def Vypis2(self, zVrchola, doVrchola, graf):
-        self.label_dlzka_cesty.setText('Dlzka cesty z vrchola ' + str(zVrchola) + ' do vrchola ' + str(doVrchola) + ' je ' + str(graf.nodes[doVrchola]['t']))
-        i = doVrchola
-        cesta = [i]
-        while(graf.nodes[i]['x'] != 0):
-            i = graf.nodes[i]['x']
-            cesta.append(i)
-        cesta.reverse()
-        string = ""
-        for bod in cesta:
-            string += str(bod) + " "
-        self.label_cesta.setText('Cesta vedie cez vrcholy ' + string)
+            kostra = Kruskal.KruskalII(True, self.comboBox_dataset.currentText())
+            self.label_cenakostry2.setText('Cena kostry je ' + Kruskal.Vypis(kostra))
+        self.obrazok_kruskal2.setPixmap(QtGui.QPixmap("obrazok.png"))
 
 if __name__ == "__main__":
     import sys
